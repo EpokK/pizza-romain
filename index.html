@@ -269,25 +269,81 @@
         }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 90vh;
+                padding: 2rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 14vw, 5rem);
+            }
+
+            .hero h1 span {
+                font-size: 0.3em;
+            }
+
+            .hero-ornament {
+                font-size: 0.65rem;
+                letter-spacing: 0.3em;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .menu-header {
+                margin-bottom: 3rem;
+            }
+
+            .menu-header h2 {
+                font-size: 2rem;
+            }
+
+            .menu-section {
+                padding: 2rem 1.2rem 5rem;
+            }
+
             .pizza-item {
                 grid-template-columns: 1fr;
                 gap: 0;
                 padding: 2rem 0;
             }
 
-            .pizza-num {
-                text-align: left;
-                font-size: 0.8rem;
-                margin-bottom: 0.3rem;
-            }
-
             .pizza-item:hover {
                 padding-left: 0.8rem;
             }
 
-            .menu-section {
-                padding: 3rem 1.5rem 6rem;
+            .pizza-num {
+                text-align: left;
+                font-size: 0.75rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .pizza-name {
+                font-size: 1.3rem;
+            }
+
+            .pizza-desc {
+                font-size: 1.05rem;
+            }
+
+            .divider {
+                font-size: 0.55rem;
+                gap: 1rem;
+            }
+
+            .divider::before, .divider::after {
+                width: 50px;
+            }
+
+            .footer {
+                padding: 3rem 1.5rem;
+            }
+
+            .scroll-hint {
+                bottom: 2rem;
             }
         }
     </style>
