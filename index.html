@@ -256,6 +256,27 @@
             color: rgba(201,168,76,0.35);
         }
 
+        /* ── HERO ILLUSTRATION ── */
+        .hero-illustration {
+            width: clamp(160px, 28vw, 260px);
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+            filter: drop-shadow(0 0 40px rgba(201,168,76,0.12));
+            animation: spin-slow 60s linear infinite;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-illustration {
+                width: 140px;
+                margin-bottom: 1.8rem;
+            }
+        }
+
         /* ── ENTRANCE ANIMATIONS ── */
         .reveal {
             opacity: 0;
@@ -352,6 +373,63 @@
 
     <!-- ═══ HERO ═══ -->
     <section class="hero">
+        <!-- Pizza illustration -->
+        <svg class="hero-illustration" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Plate / outer ring -->
+            <circle cx="200" cy="200" r="195" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="200" cy="200" r="185" stroke="#c9a84c" stroke-width="1" opacity="0.15"/>
+            <!-- Pizza base -->
+            <circle cx="200" cy="200" r="170" fill="#1a1612" stroke="#c9a84c" stroke-width="1.5" opacity="0.9"/>
+            <!-- Crust ring -->
+            <circle cx="200" cy="200" r="170" fill="none" stroke="#c9a84c" stroke-width="8" opacity="0.12"/>
+            <circle cx="200" cy="200" r="152" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.25"/>
+            <!-- Sauce base -->
+            <circle cx="200" cy="200" r="148" fill="#6b1d2a" opacity="0.25"/>
+            <!-- Slice lines -->
+            <line x1="200" y1="30" x2="200" y2="370" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+            <line x1="30" y1="200" x2="370" y2="200" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+            <line x1="80" y1="80" x2="320" y2="320" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+            <line x1="320" y1="80" x2="80" y2="320" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+            <!-- Cheese / toppings -->
+            <circle cx="155" cy="140" r="22" fill="#c9a84c" opacity="0.08" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+            <circle cx="240" cy="130" r="18" fill="#c9a84c" opacity="0.06" stroke="#c9a84c" stroke-width="0.5" opacity="0.18"/>
+            <circle cx="260" cy="220" r="24" fill="#c9a84c" opacity="0.07" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+            <circle cx="170" cy="250" r="20" fill="#c9a84c" opacity="0.08" stroke="#c9a84c" stroke-width="0.5" opacity="0.18"/>
+            <circle cx="210" cy="170" r="16" fill="#c9a84c" opacity="0.06" stroke="#c9a84c" stroke-width="0.5" opacity="0.2"/>
+            <circle cx="140" cy="200" r="14" fill="#c9a84c" opacity="0.05" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="230" cy="270" r="15" fill="#c9a84c" opacity="0.06" stroke="#c9a84c" stroke-width="0.5" opacity="0.18"/>
+            <circle cx="195" cy="110" r="12" fill="#c9a84c" opacity="0.05" stroke="#c9a84c" stroke-width="0.5" opacity="0.15"/>
+            <!-- Basil leaves -->
+            <g opacity="0.2" fill="none" stroke="#c9a84c" stroke-width="0.8">
+                <path d="M180 185 Q190 170 200 185 Q190 190 180 185Z"/>
+                <path d="M250 165 Q258 152 268 165 Q258 170 250 165Z"/>
+                <path d="M145 260 Q153 247 163 260 Q153 265 145 260Z"/>
+            </g>
+            <!-- Steam wisps -->
+            <g opacity="0.08" stroke="#c9a84c" stroke-width="1" fill="none" stroke-linecap="round">
+                <path d="M160 55 Q155 40 162 25 Q170 10 165 -5">
+                    <animate attributeName="d" dur="4s" repeatCount="indefinite"
+                        values="M160 55 Q155 40 162 25 Q170 10 165 -5;
+                                M160 55 Q165 38 158 22 Q150 8 157 -5;
+                                M160 55 Q155 40 162 25 Q170 10 165 -5"/>
+                </path>
+                <path d="M200 48 Q195 32 202 18 Q210 2 205 -12">
+                    <animate attributeName="d" dur="5s" repeatCount="indefinite"
+                        values="M200 48 Q195 32 202 18 Q210 2 205 -12;
+                                M200 48 Q206 30 198 15 Q190 0 198 -12;
+                                M200 48 Q195 32 202 18 Q210 2 205 -12"/>
+                </path>
+                <path d="M240 55 Q235 40 242 25 Q250 10 245 -5">
+                    <animate attributeName="d" dur="4.5s" repeatCount="indefinite"
+                        values="M240 55 Q235 40 242 25 Q250 10 245 -5;
+                                M240 55 Q245 38 238 22 Q230 8 237 -5;
+                                M240 55 Q235 40 242 25 Q250 10 245 -5"/>
+                </path>
+            </g>
+            <!-- Center dot -->
+            <circle cx="200" cy="200" r="3" fill="#c9a84c" opacity="0.25"/>
+        </svg>
+
         <div class="hero-ornament">Vulbens &middot; Haute-Savoie</div>
         <h1>
             Chez Romain
