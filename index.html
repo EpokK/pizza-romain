@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chez Romain — Pizzeria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+        :root {
+            --noir: #0a0a0a;
+            --creme: #f5f0e8;
+            --or: #c9a84c;
+            --or-clair: #e4d5a0;
+            --bordeaux: #6b1d2a;
+            --gris: #8a8578;
+            --blanc: #fefcf7;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--noir);
+            color: var(--creme);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+                var(--noir);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--or), transparent);
+        }
+
+        .hero-ornament {
+            font-size: 0.8rem;
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            color: var(--or);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            color: var(--creme);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.35em;
+            color: var(--or);
+            letter-spacing: 0.05em;
+            margin-top: 0.5em;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-style: italic;
+            font-weight: 300;
+            color: var(--gris);
+            max-width: 500px;
+            line-height: 1.5;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gris);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-hint .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--or), transparent);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 2rem;
+            color: var(--or);
+            font-size: 0.65rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            height: 1px;
+            width: 80px;
+            background: linear-gradient(90deg, transparent, var(--or), transparent);
+        }
+
+        /* ── MENU SECTION ── */
+        .menu-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem 8rem;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .menu-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--creme);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-header p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--gris);
+        }
+
+        /* ── PIZZA CARDS ── */
+        .pizza-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .pizza-item {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 0 2rem;
+            padding: 2.8rem 0;
+            border-bottom: 1px solid rgba(201,168,76,0.12);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .pizza-item:first-child {
+            border-top: 1px solid rgba(201,168,76,0.12);
+        }
+
+        .pizza-item:hover {
+            background: linear-gradient(90deg, rgba(201,168,76,0.03), transparent 70%);
+            padding-left: 1.5rem;
+        }
+
+        .pizza-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--or);
+            padding-top: 0.15rem;
+            text-align: right;
+            opacity: 0.5;
+        }
+
+        .pizza-content {}
+
+        .pizza-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--creme);
+            margin-bottom: 0.6rem;
+            transition: color 0.3s ease;
+        }
+
+        .pizza-item:hover .pizza-name {
+            color: var(--or);
+        }
+
+        .pizza-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 300;
+            line-height: 1.65;
+            color: var(--gris);
+            max-width: 650px;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(201,168,76,0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--creme);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--gris);
+            line-height: 1.7;
+        }
+
+        .footer .addr {
+            margin-top: 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(201,168,76,0.35);
+        }
+
+        /* ── ENTRANCE ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .pizza-item {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding: 2rem 0;
+            }
+
+            .pizza-num {
+                text-align: left;
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .pizza-item:hover {
+                padding-left: 0.8rem;
+            }
+
+            .menu-section {
+                padding: 3rem 1.5rem 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="hero-ornament">Vulbens &middot; Haute-Savoie</div>
+        <h1>
+            Chez Romain
+            <span>Vous mangerez m&ecirc;me la cro&ucirc;te</span>
+        </h1>
+        <p class="hero-subtitle">
+            Romain Villard, son four, deux pizzas &agrave; la fois, et z&eacute;ro limite sur l'imagination.
+        </p>
+        <div class="scroll-hint">
+            <span>La carte</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- ═══ DIVIDER ═══ -->
+    <div class="divider" aria-hidden="true">&loz;&nbsp;&nbsp;la carte&nbsp;&nbsp;&loz;</div>
+
+    <!-- ═══ MENU ═══ -->
+    <section class="menu-section">
+        <div class="menu-header reveal">
+            <h2>Nos Cr&eacute;ations</h2>
+            <p>Chaque pizza est une &oelig;uvre. Certaines sont des erreurs. Mais avec panache.</p>
+        </div>
+
+        <div class="pizza-list">
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">01</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La Fourmi Atomique</h3>
+                    <p class="pizza-desc">Tellement &eacute;pic&eacute;e que les pompiers ont refus&eacute; d'intervenir. Contient 6 sortes de piments, du wasabi, et une larme de crocodile.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">02</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La Philosophe</h3>
+                    <p class="pizza-desc">Vide. Juste une p&acirc;te. Parce que le vide est partout, et que vous le savez d&eacute;j&agrave;. Prix&nbsp;: 22&euro;.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">03</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">L'Incomprise</h3>
+                    <p class="pizza-desc">Ananas, cornichons, sardines et nutella. Personne ne la commande. Elle est pourtant magnifique &agrave; l'int&eacute;rieur.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">04</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La R&eacute;unionnite</h3>
+                    <p class="pizza-desc">12 ingr&eacute;dients qui auraient pu &ecirc;tre un email. Fromage, fromage, encore fromage, et un Post-it avec &laquo;&nbsp;action item&nbsp;&raquo; dessus.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">05</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">Le Gaslighting Quattro</h3>
+                    <p class="pizza-desc">Command&eacute;e en 4 fromages, livr&eacute;e en 3. Le serveur vous assure que vous avez tort depuis le d&eacute;but.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">06</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La Maman a Raison</h3>
+                    <p class="pizza-desc">Recette secr&egrave;te transmise oralement depuis trois g&eacute;n&eacute;rations. Impossible &agrave; reproduire. Elle, elle sait comment la faire.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">07</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La Stagiaire</h3>
+                    <p class="pizza-desc">Pleine de bonne volont&eacute;, l&eacute;g&egrave;rement br&ucirc;l&eacute;e sur les bords, mais elle fait le boulot. &Agrave; moiti&eacute; prix, naturellement.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">08</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">L'Algorithme</h3>
+                    <p class="pizza-desc">G&eacute;n&eacute;r&eacute;e par IA d'apr&egrave;s vos go&ucirc;ts. Vous ne l'avez pas choisie. Elle vous a choisi. Vous l'adorez quand m&ecirc;me.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">09</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La Lundi Matin</h3>
+                    <p class="pizza-desc">Froide, molle, sans enthousiasme. Mais c'est tout ce qu'il reste dans le frigo et vous n'avez pas le choix.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">10</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">Le CEO Visionnaire</h3>
+                    <p class="pizza-desc">Moiti&eacute; moins d'ingr&eacute;dients qu'avant, prix doubl&eacute;, rebaptis&eacute;e &laquo;&nbsp;Disruptive Margherita 2.0&nbsp;&raquo;. Les investisseurs adorent.</p>
+                </div>
+            </article>
+
+            <article class="pizza-item reveal">
+                <div class="pizza-num">11</div>
+                <div class="pizza-content">
+                    <h3 class="pizza-name">La Fouine</h3>
+                    <p class="pizza-desc">Elle grignote les ingr&eacute;dients des pizzas voisines quand personne ne regarde. Livr&eacute;e garnie, mais on ne sait jamais de quoi. Chaque commande est une enqu&ecirc;te.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="footer-logo">Chez Romain</div>
+        <p>Romain Villard &middot; Artisan pizzaiolo<br>Four sp&eacute;cial &mdash; deux pizzas &agrave; la fois, pas une de plus, par amour du m&eacute;tier.</p>
+        <p style="margin-top:1rem">Aucune pizza n'a &eacute;t&eacute; maltrait&eacute;e pendant la cr&eacute;ation de ce site.<br>Les descriptions sont fournies sans garantie de s&eacute;rieux.</p>
+        <div class="addr">Vulbens &middot; Haute-Savoie</div>
+    </footer>
+
+    <!-- ═══ REVEAL ON SCROLL ═══ -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
